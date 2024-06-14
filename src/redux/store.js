@@ -1,16 +1,15 @@
-import { createStore, applyMiddleware } from 'redux';
-import { composeWithDevTools } from 'redux-devtools-extension';
-import thunk from 'redux-thunk';
-import rootReducer from './reducers';
+import { configureStore } from "@reduxjs/toolkit";
 
-const initialState = {};
+import authReducer from "./slices/authSlice";
+import fileReducer from "./slices/fileSlice";
+import adminReducer from "./slices/adminSlice";
 
-const middleware = [thunk];
 
-const store = createStore(
-  rootReducer,
-  initialState,
-  composeWithDevTools(applyMiddleware(...middleware))
-);
-
-export default store;
+export const store = configureStore({
+  reducer: {
+    auth: authReducer,
+    file: fileReducer,
+    admin: adminReducer
+  },
+  middleware: (getDefaultMiddleware) => getDefaultMiddleware(),
+});
