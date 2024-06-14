@@ -33,7 +33,7 @@ export default function Files() {
       formData.append('file', selectedFile);
       formData.append('filename', filename);
       formData.append('description', description);
-      formData.append('by_user', JSON.parse(sessionStorage.getItem('user')).id);
+      formData.append('uploaded_by', JSON.parse(sessionStorage.getItem('user')).id);
       dispatch(uploadFile(formData))
         .then(() => {
           dispatch(loadFiles());
@@ -109,7 +109,7 @@ export default function Files() {
 
       {Array.isArray(files) && files.length > 0 ? (
         files.map((file) => {
-          if (file.by_user === JSON.parse(sessionStorage.getItem('user')).username) {
+          if (file.uploaded_by === JSON.parse(sessionStorage.getItem('user')).username) {
             return (<>
               <Container bg="dark.5" style={{ borderRadius: '8px', width: '90%' }}>
                 <File key={file.id} file={file} />

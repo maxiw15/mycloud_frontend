@@ -11,7 +11,7 @@ export const initialUsersState = {
 export const signUp = createAsyncThunk(
   'auth/signUp',
   async ({ username, password }) => {
-    const response = await fetch(`${process.env.REACT_APP_API_URL}/register/`, {
+    const response = await fetch(`http://127.0.0.1:8000/register/`, {
       credentials: 'include',
       method: 'POST',
       headers: {
@@ -35,7 +35,7 @@ export const login = createAsyncThunk(
   'auth/login',
   async ({ username, password }) => {
     try {
-      const response = await fetch(`${process.env.REACT_APP_API_URL}/login/`, {
+      const response = await fetch(`http://127.0.0.1:8000/login/`, {
         credentials: 'include',
         method: 'POST',
         headers: {
@@ -62,7 +62,7 @@ export const checkUser = createAsyncThunk(
   'auth/checkUser',
   async () => {
     try {
-      const response = await fetch(`${process.env.REACT_APP_API_URL}/api/users/${JSON.parse(sessionStorage.getItem('user')).id}/`, {
+      const response = await fetch(`http://127.0.0.1:8000/api/users/${JSON.parse(sessionStorage.getItem('user')).id}/`, {
         credentials: 'include',
         method: 'GET',
         headers: {
@@ -86,7 +86,7 @@ export const checkUser = createAsyncThunk(
 export const logout = createAsyncThunk(
   'auth/logout',
   async () => {
-    const response = await fetch(`${process.env.REACT_APP_API_URL}/logout/`, {
+    const response = await fetch(`http://127.0.0.1:8000/logout/`, {
       credentials: 'include',
       method: 'GET',
       headers: {
@@ -104,7 +104,7 @@ export const logout = createAsyncThunk(
   export const changeUsername = createAsyncThunk(
     'auth/changeUsername',
     async ({ newUsername }) => {
-      const response = await fetch(`${process.env.REACT_APP_API_URL}/api/users/${JSON.parse(sessionStorage.getItem('user')).id}/`, {
+      const response = await fetch(`http://127.0.0.1:8000/api/users/${JSON.parse(sessionStorage.getItem('user')).id}/`, {
         credentials: 'include',
         method: 'PATCH',
         headers: {
@@ -123,7 +123,7 @@ export const logout = createAsyncThunk(
   export const changePassword = createAsyncThunk(
     'auth/changePassword',
     async ({ newPassword }) => {
-      await fetch(`${process.env.REACT_APP_API_URL}/api/users/${JSON.parse(sessionStorage.getItem('user')).id}/`, {
+      await fetch(`http://127.0.0.1:8000/api/users/${JSON.parse(sessionStorage.getItem('user')).id}/`, {
         credentials: 'include',
         method: 'PATCH',
         headers: {

@@ -57,15 +57,15 @@ export default function File({ file }) {
         <Group justify='center' align='center'>
           <Group justify='space-between' wrap="nowrap" gap='xl' style={{ flex: '1', padding: '0px 30px', maxWidth: '80%' }} >
             <Stack align="center" gap="0">
-              {users.find(user => user.username === file.by_user && user.is_staff) ? (
+              {users.find(user => user.username === file.uploaded_by && user.is_staff) ? (
                 <Indicator inline label="staff" size={16}>
                   <Avatar radius="xl" size="md" variant="transparent" />
-                  <Text>{file.by_user}</Text>
+                  <Text>{file.uploaded_by}</Text>
                 </Indicator>
               ) : (
                 <>
                   <Avatar radius="xl" size="md" variant="transparent" />
-                  <Text>{file.by_user}</Text>
+                  <Text>{file.uploaded_by}</Text>
                 </>)}
             </Stack>
             <Stack gap='4'>

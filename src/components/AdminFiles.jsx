@@ -38,7 +38,7 @@ export default function AdminFiles() {
       formData.append('file', selectedFile);
       formData.append('filename', filename);
       formData.append('description', description);
-      formData.append('by_user', users.find(user => user.username === uploadBy)?.id);
+      formData.append('uploaded_by', users.find(user => user.username === uploadBy)?.id);
       dispatch(uploadFile(formData))
         .then(() => {
           dispatch(loadFiles());
