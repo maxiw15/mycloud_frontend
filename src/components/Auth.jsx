@@ -25,28 +25,28 @@ function Auth({ action }) {
     if (login.fulfilled.match(response)) {
       navigate('/');
     } else {
-      setError('Login failed. Incorrect data.');
+      setError('Ошибка. Проверьте логин или пароль.');
     }
   };
 
   const handleSignUp = async () => {
     let valid = true;
     if (!validateUsername(username)) {
-      setUsernameError('Invalid username format.');
+      setUsernameError('Логин состоит только из латинских букв и цифр, первая буква, длина от 4 до 20 символов');
       valid = false;
     } else {
       setUsernameError('');
     }
 
     if (!validateEmail(email)) {
-      setEmailError('Invalid email format.');
+      setEmailError('Введен неправильный email');
       valid = false;
     } else {
       setEmailError('');
     }
 
     if (!validatePassword(password)) {
-      setPasswordError('Invalid password format.');
+      setPasswordError('Пароль должен содержать не менее 6 символов, включающий как минимум одну заглавную букву, одну цифру и один специальный символ.');
       valid = false;
     } else {
       setPasswordError('');
@@ -60,7 +60,7 @@ function Auth({ action }) {
     if (signUp.fulfilled.match(response)) {
       navigate('/');
     } else {
-      setError('Sign up failed. Try again with another username.');
+      setError('Имя пользователя уже занято');
     }
   };
 
@@ -71,7 +71,7 @@ function Auth({ action }) {
           <>
             <TextInput
               style={{ width: '400px' }}
-              label="Username"
+              label="Логин"
               size='md'
               value={username}
               error={usernameError}
@@ -80,7 +80,7 @@ function Auth({ action }) {
             <Space h="lg" />
             <TextInput
               style={{ width: '400px' }}
-              label="Full Name"
+              label="Полное имя"
               size='md'
               value={fullName}
               onChange={(e) => setFullName(e.target.value)}
@@ -101,7 +101,7 @@ function Auth({ action }) {
           <>
             <TextInput
               style={{ width: '400px' }}
-              label="Username"
+              label="Логин"
               size='md'
               value={username}
               onChange={(e) => setUsername(e.target.value)}
@@ -112,7 +112,7 @@ function Auth({ action }) {
         <PasswordInput
           style={{ width: '400px' }}
           size="md"
-          label="Password"
+          label="Пароль"
           value={password}
           error={passwordError}
           onChange={(e) => setPassword(e.target.value)}
@@ -128,21 +128,21 @@ function Auth({ action }) {
           <>
             <Center>
               <Button variant="filled" size='md' style={{ width: '150px' }} onClick={handleLogin}>
-                Login
+                Авторизация
               </Button>
             </Center>
             <Space h="md" />
             <Center>
               <Anchor href="/signup">
-                Sign up
+                Регистрация
               </Anchor>
             </Center>
           </>
         ) : (
           <Center>
-            <Button variant="filled" size='md' style={{ width: '150px' }} onClick={handleSignUp}>
-              Sign up
-            </Button>
+<Button variant="filled" size='md' style={{ width: '200px', fontSize: '14px' }} onClick={handleSignUp}>
+  Зарегистрироваться
+</Button>
           </Center>
         )}
       </Container>

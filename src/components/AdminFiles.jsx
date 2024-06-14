@@ -43,7 +43,7 @@ export default function AdminFiles() {
           setSelectedFile(null);
         })
         .catch((error) => {
-          console.error('Error uploading file:', error);
+          console.error('Ошибка загрузки файла:', error);
         });
     }
     close();
@@ -62,12 +62,12 @@ export default function AdminFiles() {
       {loading ? (
         <Loading />
       ) : error ? (
-        <div>Error: {error}</div>
+        <div>Ошибка: {error}</div>
       ) : (
         <Container>
           <Center inline style={{ gap: '20px' }}>
-            <h2>Files</h2>
-            <Button variant='light' onClick={open}>Upload new file</Button>
+            <h2>Файлы</h2>
+            <Button variant='light' onClick={open}>Загрузить новый файл</Button>
           </Center>
 
           {files && files.map((file) => (
@@ -77,15 +77,15 @@ export default function AdminFiles() {
         </Container>
       )}
 
-      <Modal opened={opened} onClose={close} title="Upload new file" centered>
+      <Modal opened={opened} onClose={close} title="Загрузить новый файл" centered>
         <TextInput
-          label="File name"
+          label="Имя файла"
           value={filename}
           onChange={(e) => setFilename(e.target.value)}
         />
         <Space h="xs" />
         <TextInput
-          label="Description"
+          label="Описание"
           value={description}
           onChange={(e) => setDescription(e.target.value)}
         />
@@ -99,25 +99,25 @@ export default function AdminFiles() {
         <Group>
           <FileInput
             onClick={() => fileInputRef.current.click()}
-            placeholder={selectedFile ? selectedFile.name : 'Upload files'}
+            placeholder={selectedFile ? selectedFile.name : 'Выберите файлы'}
             variant="default" multiple style={{ borderRadius: '5px', flex: '1' }} />
           <Button
             variant="light"
             onClick={() => fileInputRef.current.click()}
           >
-            Choose files
+            Выберите файлы
           </Button>
         </Group>
         <Space h="xs" />
         <NativeSelect
-          label="by user"
+          label="от пользователя"
           data={usernames}
           defaultValue={JSON.parse(sessionStorage.getItem('user')).username}
           onChange={(e) => setUploadBy(e.target.value)} />
         <Space h="lg" />
         <Center>
           <Button
-            onClick={handleUpload}>Upload file</Button>
+            onClick={handleUpload}>Загрузить файл</Button>
         </Center>
       </Modal>
     </>

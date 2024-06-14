@@ -33,12 +33,12 @@ export default function AdminUsers() {
       {loading ? (
         <Loading />
       ) : error ? (
-        <div>Error: {error}</div>
+        <div>Ошибка: {error}</div>
       ) : (
         <Container>
           <Center inline style={{ gap: '20px' }}>
-            <h2>Users</h2>
-            <Button variant='light' onClick={open}>Create new user</Button>
+            <h2>Пользователи</h2>
+            <Button variant='light' onClick={open}>Создать нового пользователя</Button>
           </Center>
 
           {users && users.map((user) => (
@@ -47,15 +47,15 @@ export default function AdminUsers() {
         </Container>
       )}
 
-      <Modal opened={opened} onClose={close} title="Create user" centered>
+      <Modal opened={opened} onClose={close} title="Создать пользователя" centered>
         <TextInput
-          label="Username"
-          placeholder="Input username"
+          label="Имя пользователя"
+          placeholder="Введите имя пользователя"
           onChange={(e) => setNewUsername(e.target.value)}
         />
         <PasswordInput
-          label="Password"
-          placeholder='Input password'
+          label="Пароль"
+          placeholder='Введите пароль'
           visible={visible}
           onVisibilityChange={toggle}
           onChange={(e) => setNewPassword(e.target.value)}
@@ -64,12 +64,12 @@ export default function AdminUsers() {
         <Space h="md" />
         <Checkbox
           defaultChecked={false}
-          label="Grant admin privileges"
+          label="Предоставить права администратора"
           onChange={(e) => setIsStaff(e.target.checked)}
         />
         <Space h="md" />
         <Center>
-          <Button onClick={handleCreateUser}>Create user</Button>
+          <Button onClick={handleCreateUser}>Создать пользователя</Button>
         </Center>
       </Modal>
     </>

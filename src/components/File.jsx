@@ -30,7 +30,7 @@ export default function File({ file }) {
           setEditingFile(null);
         })
         .catch((error) => {
-          console.error('Error renaming file:', error);
+          console.error('Ошибка переименования файла:', error);
         });
     }
     setEditingFile(null);
@@ -45,7 +45,7 @@ export default function File({ file }) {
         dispatch(loadFiles());
       })
       .catch((error) => {
-        console.error('Error deleting file:', error);
+        console.error('Ошибка удаления файла:', error);
       });
   };
 
@@ -56,7 +56,7 @@ export default function File({ file }) {
           <Group justify='space-between' wrap="nowrap" gap='xl' style={{ flex: '1', padding: '0px 30px', maxWidth: '80%' }} >
             <Stack align="center" gap="0">
               {users.find(user => user.username === file.uploaded_by && user.is_staff) ? (
-                <Indicator inline label="staff" size={16}>
+                <Indicator inline label="сотрудник" size={16}>
                   <Avatar radius="xl" size="md" variant="transparent" />
                   <Text>{file.uploaded_by}</Text>
                 </Indicator>
@@ -73,7 +73,7 @@ export default function File({ file }) {
                 <Popover.Target>
                   <Group justify='flex-start' gap='4'>
                     <Text size='xs'>ℹ️</Text>
-                    <Text size='xs' td='underline'>info</Text>
+                    <Text size='xs' td='underline'>информация</Text>
                   </Group>
                 </Popover.Target>
                 <Popover.Dropdown>
@@ -98,14 +98,14 @@ export default function File({ file }) {
                   <Grid.Col span={1}>
                     <CopyButton value={file.share_link} timeout={1000}>
                       {({ copied, copy }) => (
-                        <Tooltip label={copied ? 'Copied' : 'Copy'} withArrow position="right">
+                        <Tooltip label={copied ? 'Скопировано' : 'Копировать'} withArrow position="right">
                           <ActionIcon color={copied ? 'teal' : 'gray'} variant="subtle" onClick={copy}>
                             {copied ? (
                               <IconCheck style={{ width: rem(16) }} />
                             ) : (
                               <IconCopy style={{ width: rem(16) }} />
                             )}
-                            </ActionIcon>
+                          </ActionIcon>
                         </Tooltip>
                       )}
                     </CopyButton>
@@ -115,45 +115,45 @@ export default function File({ file }) {
             </Popover>
 
             <Button rightSection={<IconEdit size={16} />} variant="light" size="md" onClick={() => handleEdit(file)}>
-              Edit
+              Редактировать
             </Button>
 
             <Button rightSection={<IconDownload size={16} />} variant="light" size="md" onClick={() => dispatch(downloadFile(file.id))}>
-              Download
+              Скачать
             </Button>
 
             <Button rightSection={<IconTrash size={16} />} variant="light" size="md" color="red" onClick={() => setDeleteModalOpened(true)}>
-              Delete
+              Удалить
             </Button>
           </Group>
         </Group>
       </Container>
       <Space h="xs" />
 
-      <Modal opened={editModalOpened} onClose={() => setEditModalOpened(false)} title="Edit file" centered>
+      <Modal opened={editModalOpened} onClose={() => setEditModalOpened(false)} title="Редактировать файл" centered>
         <TextInput
           data-autofocus
-          label="File name"
+          label="Имя файла"
           value={newFilename}
           onChange={(e) => setNewFilename(e.target.value)} />
         <Space h="xs" />
         <TextInput
-          label="Description"
+          label="Описание"
           value={newDescription}
           onChange={(e) => setNewDescription(e.target.value)} />
         <Space h="md" />
         <Center>
-          <Button onClick={handleSave}>Save</Button>
+          <Button onClick={handleSave}>Сохранить</Button>
         </Center>
       </Modal>
 
       <Modal opened={deleteModalOpened} onClose={() => setDeleteModalOpened(false)} centered>
         <Center>
-          <Text>Are you sure you want to delete file "{file.filename}"?</Text>
+          <Text>Вы уверены, что хотите удалить файл "{file.filename}"?</Text>
         </Center>
         <Space h="md" />
         <Center>
-          <Button color="red" onClick={() => handleDelete(file.id)}>Delete</Button>
+          <Button color="red" onClick={() => handleDelete(file.id)}>Удалить</Button>
         </Center>
         <Space h="md" />
       </Modal>

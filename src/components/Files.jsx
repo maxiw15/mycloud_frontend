@@ -39,7 +39,7 @@ export default function Files() {
           setSelectedFile(null);
         })
         .catch((error) => {
-          console.error('Error uploading file:', error);
+          console.error('Ошибка загрузки файла:', error);
         });
       setFilename('');
       setDescription('');
@@ -64,13 +64,13 @@ export default function Files() {
           onChange={handleFileInputChange}
         />
         <TextInput
-          label="File name"
+          label="Имя файла"
           value={filename}
           onChange={(e) => setFilename(e.target.value)}
         />
         <Space h="xs" />
         <TextInput
-          label="Description"
+          label="Описание"
           value={description}
           onChange={(e) => setDescription(e.target.value)}
         />
@@ -79,7 +79,7 @@ export default function Files() {
           <FileInput
             size='md'
             onClick={() => fileInputRef.current.click()}
-            placeholder={selectedFile ? selectedFile.name : 'Choose files'}
+            placeholder={selectedFile ? selectedFile.name : 'Выберите файлы'}
             variant="default"
             style={{ borderRadius: '3px', flex: '1' }}
           />
@@ -88,7 +88,7 @@ export default function Files() {
             size="md"
             onClick={() => fileInputRef.current.click()}
           >
-            Choose files
+            Выберите файлы
           </Button>
         </Group>
         <Space h="lg" />
@@ -99,7 +99,7 @@ export default function Files() {
             size="md"
             onClick={handleUpload}
           >
-            Upload
+            Загрузить
           </Button>
         </Center>
       </Container>
