@@ -9,8 +9,7 @@ import User from './User';
 import Loading from './Loading';
 import { loadUsers, createUser } from '../redux/slices/adminSlice';
 
-
-export default function AdminFiles() {
+export default function AdminUsers() {
   const dispatch = useDispatch();
   const { users, loading, error } = useSelector((state) => state.admin) || {};
   const [opened, { open, close }] = useDisclosure(false);
@@ -23,12 +22,11 @@ export default function AdminFiles() {
     dispatch(createUser({ username: newUsername, password: newPassword, is_staff: isStaff }))
       .then(() => dispatch(loadUsers()));
     close();
-  }
+  };
 
   useEffect(() => {
     dispatch(loadUsers());
   }, [dispatch]);
-
 
   return (
     <>
@@ -42,11 +40,10 @@ export default function AdminFiles() {
             <h2>Users</h2>
             <Button variant='light' onClick={open}>Create new user</Button>
           </Center>
-          
-            {users && users.map((user) => (
-              <User key={user.id} user={user} />
-            ))}
 
+          {users && users.map((user) => (
+            <User key={user.id} user={user} />
+          ))}
         </Container>
       )}
 
@@ -75,7 +72,6 @@ export default function AdminFiles() {
           <Button onClick={handleCreateUser}>Create user</Button>
         </Center>
       </Modal>
-
     </>
   );
 }

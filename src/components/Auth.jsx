@@ -118,7 +118,7 @@ function Auth({ action }) {
           onChange={(e) => setPassword(e.target.value)}
           onKeyPress={(e) => e.key === 'Enter' && (action === 'signin' ? handleLogin() : handleSignUp())}
         />
- <Space h="xl" />
+        <Space h="xl" />
         {error && (
           <Center>
             <div style={{ color: 'red' }}>{error}</div>

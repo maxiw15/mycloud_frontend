@@ -9,7 +9,6 @@ import Loading from './Loading';
 import { uploadFile, loadFiles, initialFileState } from '../redux/slices/fileSlice';
 import { loadUsers } from '../redux/slices/adminSlice';
 
-
 export default function Files() {
   const { files, loading } = useSelector((state) => state.file) || initialFileState;
   const dispatch = useDispatch();
@@ -26,7 +25,7 @@ export default function Files() {
   const handleUpload = () => {
     if (selectedFile) {
       if (filename === '') {
-        setFilename(selectedFile.name)
+        setFilename(selectedFile.name);
       }
 
       const formData = new FormData();
@@ -42,7 +41,7 @@ export default function Files() {
         .catch((error) => {
           console.error('Error uploading file:', error);
         });
-      setFilename('')
+      setFilename('');
       setDescription('');
     }
   };
@@ -54,11 +53,10 @@ export default function Files() {
     setFilename('');
   }, [dispatch]);
 
-
   return (
     <>
       <Space h="lg" />
-      <Container bg="dark.5" style={{ padding: '20px 40px', borderRadius: '8px', width: '90%' }}>
+      <Container bg="white" style={{ padding: '20px 40px', borderRadius: '8px', width: '90%', boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)' }}>
         <input
           type="file"
           style={{ display: 'none' }}
@@ -110,12 +108,14 @@ export default function Files() {
       {Array.isArray(files) && files.length > 0 ? (
         files.map((file) => {
           if (file.uploaded_by === JSON.parse(sessionStorage.getItem('user')).username) {
-            return (<>
-              <Container bg="dark.5" style={{ borderRadius: '8px', width: '90%' }}>
-                <File key={file.id} file={file} />
-              </Container>
-              <Space h="xs" />
-            </>);
+            return (
+              <>
+                <Container bg="white" style={{ borderRadius: '8px', width: '90%', boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)' }}>
+                  <File key={file.id} file={file} />
+                </Container>
+                <Space h="xs" />
+              </>
+            );
           } else {
             return null;
           }

@@ -6,7 +6,6 @@ import { Container, Button, Space, Stack, Modal, TextInput, Center, Text, Checkb
 
 import { editUser, loadUsers, deleteUser } from '../redux/slices/adminSlice';
 
-
 export default function User({ user }) {
   const dispatch = useDispatch();
   const [editingUser, setEditingUser] = useState(null);
@@ -23,7 +22,6 @@ export default function User({ user }) {
 
   const handleSave = () => {
     if (editingUser) {
-
       if (!isStaff) {
         setIsStaff(editingUser.is_staff);
       }
@@ -41,17 +39,21 @@ export default function User({ user }) {
   const handleDelete = (userId) => {
     dispatch(deleteUser(userId)).then(() => {
       dispatch(loadUsers());
-    })
+    });
   };
 
   return (
     <>
-      <Container bg="dark.5" style={{ padding: '20px', borderRadius: '8px' }}>
+      <Container bg="white" style={{ padding: '20px', borderRadius: '8px', boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)' }}>
         <Group justify='space-between' align='center'>
-          <Stack gap='0' style={{ padding: '0px 30px'}}>
-          {user.is_staff ? (<Indicator inline label="staff" size={16}>
-            {user.username}
-            </Indicator>) : (<Text>{user.username}</Text>)}
+          <Stack gap='0' style={{ padding: '0px 30px' }}>
+            {user.is_staff ? (
+              <Indicator inline label="staff" size={16}>
+                {user.username}
+              </Indicator>
+            ) : (
+              <Text>{user.username}</Text>
+            )}
           </Stack>
           <Group justify='center' align='center'>
             <Button
@@ -74,7 +76,7 @@ export default function User({ user }) {
             </Button>
           </Group>
         </Group>
-      </Container >
+      </Container>
       <Space h="xs" />
 
       <Modal opened={editModalOpened} onClose={() => setEditModalOpened(false)} title="Edit user" centered>

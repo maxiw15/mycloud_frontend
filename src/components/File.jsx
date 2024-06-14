@@ -6,7 +6,6 @@ import { Container, Button, Space, Grid, Popover, Text, CopyButton, ActionIcon, 
 
 import { editFile, downloadFile, deleteFile, loadFiles } from '../redux/slices/fileSlice';
 
-
 export default function File({ file }) {
   const dispatch = useDispatch();
   const [editingFile, setEditingFile] = useState(null);
@@ -50,10 +49,9 @@ export default function File({ file }) {
       });
   };
 
-
   return (
     <>
-      <Container bg="dark.5" style={{ padding: '20px', borderRadius: '8px' }}>
+      <Container bg="white" style={{ padding: '20px', borderRadius: '8px', boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)' }}>
         <Group justify='center' align='center'>
           <Group justify='space-between' wrap="nowrap" gap='xl' style={{ flex: '1', padding: '0px 30px', maxWidth: '80%' }} >
             <Stack align="center" gap="0">
@@ -66,14 +64,15 @@ export default function File({ file }) {
                 <>
                   <Avatar radius="xl" size="md" variant="transparent" />
                   <Text>{file.uploaded_by}</Text>
-                </>)}
+                </>
+              )}
             </Stack>
             <Stack gap='4'>
               {file.filename}
               <Popover width={200} position="bottom" withArrow shadow="md">
                 <Popover.Target>
                   <Group justify='flex-start' gap='4'>
-                    <Text size='xs'>ⓘ</Text>
+                    <Text size='xs'>ℹ️</Text>
                     <Text size='xs' td='underline'>info</Text>
                   </Group>
                 </Popover.Target>
@@ -106,7 +105,7 @@ export default function File({ file }) {
                             ) : (
                               <IconCopy style={{ width: rem(16) }} />
                             )}
-                          </ActionIcon>
+                            </ActionIcon>
                         </Tooltip>
                       )}
                     </CopyButton>
@@ -114,7 +113,6 @@ export default function File({ file }) {
                 </Grid>
               </Popover.Dropdown>
             </Popover>
-
 
             <Button rightSection={<IconEdit size={16} />} variant="light" size="md" onClick={() => handleEdit(file)}>
               Edit
@@ -129,7 +127,7 @@ export default function File({ file }) {
             </Button>
           </Group>
         </Group>
-      </Container >
+      </Container>
       <Space h="xs" />
 
       <Modal opened={editModalOpened} onClose={() => setEditModalOpened(false)} title="Edit file" centered>
@@ -159,7 +157,6 @@ export default function File({ file }) {
         </Center>
         <Space h="md" />
       </Modal>
-
     </>
-  )
+  );
 }

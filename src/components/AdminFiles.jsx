@@ -10,7 +10,6 @@ import Loading from './Loading';
 import { uploadFile } from '../redux/slices/fileSlice';
 import { loadFiles, loadUsers } from '../redux/slices/adminSlice';
 
-
 export default function AdminFiles() {
   const dispatch = useDispatch();
   const [opened, { open, close }] = useDisclosure(false);
@@ -18,8 +17,8 @@ export default function AdminFiles() {
   const fileInputRef = useRef(null);
   const { files, users, loading, error } = useSelector((state) => state.admin) || {};
   const usernames = users.map(user => user.username);
-  const [uploadBy, setUploadBy] = useState(JSON.parse(sessionStorage.getItem('user')).username)
-  const [filename, setFilename] = useState('')
+  const [uploadBy, setUploadBy] = useState(JSON.parse(sessionStorage.getItem('user')).username);
+  const [filename, setFilename] = useState('');
   const [description, setDescription] = useState('');
 
   const handleFileInputChange = (event) => {
@@ -29,9 +28,8 @@ export default function AdminFiles() {
 
   const handleUpload = () => {
     if (selectedFile) {
-
       if (filename === '') {
-        setFilename(selectedFile.name)
+        setFilename(selectedFile.name);
       }
 
       const formData = new FormData();
@@ -73,7 +71,7 @@ export default function AdminFiles() {
           </Center>
 
           {files && files.map((file) => (
-            <File key={file.id} file={file} />
+             <File key={file.id} file={file} />
           ))}
 
         </Container>
